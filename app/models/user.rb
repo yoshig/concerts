@@ -1,13 +1,28 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string(255)      not null
+#  email           :string(255)      not null
+#  password_digest :string(255)      not null
+#  token           :string(255)      not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class User < ActiveRecord::Base
   attr_reader :password
-  has_many :sessions
+  has_many :sessions, inverse_of: :user
 
   validates :username,
             :password,
             :password_digest,
             :email, presence: true
-  before_validation do
-    ensure_token
+
+  def self.find_by_credentials(username, password)
+    user = User.find_by(username: username)
+    user if user && user.is_password?(password)
   end
 
   def password=(secret)
@@ -16,16 +31,6 @@ class User < ActiveRecord::Base
   end
 
   def is_password?(secret)
-    BCrypt::Password.new(self.password_digest).is_password?
-  end
-
-  def reset_token!
-    self.token = RandomSecure.urlsafe_base64
-    self.save
-    self.token
-  end
-
-  def ensure_token
-    self.token ||= reset_token!
+    BCrypt::Password.new(self.password_digest).is_password?(secret)
   end
 end
