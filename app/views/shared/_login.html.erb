@@ -10,8 +10,12 @@
   <% if url == users_url %>
   <label for="email">Email</label>
   <input type="text" name="user[email]" value="<%= user.email %>" id="email">
-  <% end %>
   <br>
+
+  <label for="are_you_a_band?">I'm a band!</label>
+  <input type="checkbox" name="user[band]" value="true" id="are_you_a_band?">
+  <br>
+  <% end %>
 
   <label for="password">Password</label>
   <input type="password" name="user[password]" value="" id="password">

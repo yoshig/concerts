@@ -6,9 +6,9 @@
 #  username        :string(255)      not null
 #  email           :string(255)      not null
 #  password_digest :string(255)      not null
-#  token           :string(255)      not null
 #  created_at      :datetime
 #  updated_at      :datetime
+#  band            :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

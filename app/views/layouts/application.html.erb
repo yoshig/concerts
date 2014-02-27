@@ -11,7 +11,25 @@
 <% if logged_in? %>
   <%= @current_user.username %>
   <%= button_to "Log out", session_url(current_session), method: :delete %>
+<% else %>
+<%= link_to "Sign in", new_session_url %>
+or
+<%= link_to "Sign up", new_user_url %>
 <% end%>
+
+
+<% if @user && @user.errors.any? %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <h2> <%= msg %>
+  <% end %>
+<% end %>
+
+<% if flash %>
+  <% flash.each do |k, v| %>
+    <%= v %>
+  <% end %>
+<% end %>
+
 </header>
 <%= yield %>
 
