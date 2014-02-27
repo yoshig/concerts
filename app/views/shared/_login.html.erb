@@ -1,0 +1,23 @@
+<% action_url = action == "post" ? users_url : sessions_url%>
+
+<form action="<%= action_url %>" method="post" >
+  <input type="hidden" name="_method" value="<%= action %>">
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <br>
+
+  <label for="username">Username</label>
+  <input type="text" name="user[username]" value="<%= user.username %>" id="username">
+  <br>
+
+  <% if action != "post "%>
+  <label for="email">Email</label>
+  <input type="text" name="user[email]" value="<%= user.email %>" id="email">
+  <% end %>
+  <br>
+
+  <label for="password">Password</label>
+  <input type="password" name="user[password]" value="" id="password">
+
+  <p><input type="submit" value="Continue &rarr;"></p>
+</form>

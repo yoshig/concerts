@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_reader :password
+  has_many :sessions
 
   validates :username,
             :password,
