@@ -1,3 +1,5 @@
 <h1 id="sign_up">Sign Up</h1>
 
-<%= render "shared/login", user: @user, action: :post %>
+<%= render "shared/login", user: @user, url: users_url %>
+
+<%= link_to "Sign In?", new_session_url %>
