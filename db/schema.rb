@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226235229) do
+ActiveRecord::Schema.define(version: 20140227033631) do
 
   create_table "sessions", force: true do |t|
     t.integer  "user_id"
@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(version: 20140226235229) do
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string   "username",        null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "username",                        null: false
+    t.string   "email",                           null: false
+    t.string   "password_digest",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "band",            default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

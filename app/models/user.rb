@@ -6,9 +6,9 @@
 #  username        :string(255)      not null
 #  email           :string(255)      not null
 #  password_digest :string(255)      not null
-#  token           :string(255)      not null
 #  created_at      :datetime
 #  updated_at      :datetime
+#  band            :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
             :password,
             :password_digest,
             :email, presence: true
+  validates :band, inclusion: { in: [true, false] }
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
