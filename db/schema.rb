@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227033631) do
+ActiveRecord::Schema.define(version: 20140227163252) do
+
+  create_table "bands", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "concerts", force: true do |t|
+    t.integer  "tour_id"
+    t.date     "date"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", force: true do |t|
     t.integer  "user_id"
@@ -22,13 +37,20 @@ ActiveRecord::Schema.define(version: 20140227033631) do
 
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
 
+  create_table "tours", force: true do |t|
+    t.integer  "band_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "username",                        null: false
     t.string   "email",                           null: false
     t.string   "password_digest",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "band",            default: false
+    t.boolean  "is_a_band",       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

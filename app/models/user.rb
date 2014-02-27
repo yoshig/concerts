@@ -14,12 +14,15 @@
 class User < ActiveRecord::Base
   attr_reader :password
   has_many :sessions, inverse_of: :user
+  has_one :band, inverse_of: :user
+  has_many :followed_bands, class_name: "Band", foreign_key: :user_id
+  has_many :friends, class_name: "User", foreign_key: :user_id
 
   validates :username,
             :password,
             :password_digest,
             :email, presence: true
-  validates :band, inclusion: { in: [true, false] }
+  validates :is_a_band, inclusion: { in: [true, false] }
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

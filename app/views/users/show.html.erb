@@ -1,1 +1,11 @@
 User Show Page
+
+<% @user.concerts.each do |concert| %>
+  <%= link_to concert.tour.name, concert_url(concert) %>
+<% end %>
+
+<%= link_to "Find a concert" tour_url %>
+
+
+
+

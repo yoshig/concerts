@@ -1,11 +1,10 @@
 # == Schema Information
 #
-# Table name: concerts
+# Table name: bands
 #
 #  id         :integer          not null, primary key
-#  tour_id    :integer
-#  date       :date
-#  location   :string(255)
+#  user_id    :integer
+#  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -13,11 +12,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tour_id: 1
-  date: 2014-02-26
-  location: MyString
+  user_id: 1
+  name: MyString
 
 two:
-  tour_id: 1
-  date: 2014-02-26
-  location: MyString
+  user_id: 1
+  name: MyString
