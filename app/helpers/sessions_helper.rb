@@ -6,7 +6,6 @@ module SessionsHelper
       new_session = Session.create(user_id: @user.id)
       session[:token] = new_session.token
     end
-    redirect_to concerts_url
   end
 
   def find_session
