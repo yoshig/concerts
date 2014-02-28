@@ -1,3 +1,5 @@
-All Concerts
+All Your Concerts
 
-<%= Concert.all.each do |concert| %>
+<% Concert.all.each do |concert| %>
+  <%= link_to concert.tour.name, concert_url(concert) %>
+<% end %>

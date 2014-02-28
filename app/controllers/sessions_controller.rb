@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if @user = User.find_by_credentials(params[:user][:username],
                                         params[:user][:password])
       login!
+      redirect_to concerts_url
     else
       @user = User.new
       flash.now[:errors] = ["Invalid credentials"]

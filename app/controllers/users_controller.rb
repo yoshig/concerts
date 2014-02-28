@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login!
+      redirect_to @user.is_a_band? ? new_band_url : concerts_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render "new"

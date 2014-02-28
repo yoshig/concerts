@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
   has_many :friends, class_name: "User", foreign_key: :user_id
 
   validates :username,
-            :password,
             :password_digest,
             :email, presence: true
+  validates :password, length: { minimum: 6, allow_nil: true }
   validates :is_a_band, inclusion: { in: [true, false] }
 
   def self.find_by_credentials(username, password)
@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   def password=(secret)
     @password = secret
     self.password_digest = BCrypt::Password.create(secret)
+  end
+
+  def is_a_band?
+    self.is_a_band
   end
 
   def is_password?(secret)
