@@ -1,0 +1,6 @@
+ALL TOURS
+
+<% Tour.all.each do |tour| %>
+  <%= link_to tour.band, band_url(tour.band) %>, <%%>
+  <%= link_to tour.name, tour_url(tour) %>
+<% end %>

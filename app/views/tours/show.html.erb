@@ -1,0 +1,28 @@
+<ul>
+<% @tour.concerts.each do |concert| %>
+  <li>
+    <%= concert.date %><br>
+    Location: <%= link_to concert.location, concert_url(concert)%>
+    <%= button_to "Delete Concert",
+                  tour_concert_url(@tour, concert),
+                  method: :delete %>
+  </li>
+<% end %>
+</ul>
+
+Add a tour date
+<form action="<%= tour_concerts_url(@tour) %>" method="post">
+  <%= form_auth %>
+
+  <label for="date">Date</label>
+  <input type="date" name="concert[date]" value="<%= Date.today %>" id="date">
+
+  <label for="location">Location</label>
+  <input type="text" name="concert[location]" value="<%= @concert.location %>" id="location">
+
+
+  <p><input type="submit" value="Continue &rarr;"></p>
+</form>
+
+<%= link_to "#{@tour.band.name}'s Homepage", band_url(@tour.band) %>
+

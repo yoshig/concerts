@@ -1,0 +1,13 @@
+<h1 id="all_bands">Touring Bands</h1>
+
+<% touring_bands = Band.includes(:tours)
+                        .where("tours.start_date <= ?", Date.today)
+                        .where("tours.end_date >= ?", Date.today) %>
+
+<ul>
+<% touring_bands.each do |band| %>
+
+  <%= link_to band.name, band_url(band) %>
+
+<% end %>
+</ul>

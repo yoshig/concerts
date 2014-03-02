@@ -1,0 +1,29 @@
+<form action="<%= concert_url(@concert) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <%= form_auth %>
+
+  <input type="text"
+         name="concert[location]"
+         id="edit_name"
+         value="<%= @concert.location %>">
+  <input type="submit" value="Change Location">
+</form>
+
+<form action="<%= concert_url(@concert) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <%= form_auth %>
+
+  <input type="date"
+         name="concert[date]"
+         id="edit_name"
+         value ="<%= @concert.date %>">
+  <input type="submit" value="Change Date">
+</form>
+
+
+<br>
+This is where all the cool comments and people going info would go
+<br>
+<%= link_to "Back to tour page", tour_url(@concert.tour) %>
+
+<%= link_to "Back to band page", band_url(@concert.tour.band)%>
