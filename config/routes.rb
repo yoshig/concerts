@@ -3,6 +3,12 @@ Concerts::Application.routes.draw do
   resources :concerts
   resources :sessions
   resources :bands do
-    resources :tours
+    resources :tours, except: :index
+  end
+  resources :tours, except: :index do
+    resources :concerts, only: [:create, :destroy]
+    collection do
+      get 'set_dates'
+    end
   end
 end

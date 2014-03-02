@@ -1,6 +1,45 @@
-ALL TOURS
+New Tour
 
-<% Tour.all.each do |tour| %>
-  <%= link_to tour.band, band_url(tour.band) %>, <%%>
-  <%= link_to tour.name, tour_url(tour) %>
-<% end %>
+<form action="<%= tours_url %>" method="post">
+  <%= form_auth %>
+
+  <label for="name">Name</label>
+  <input type="text" name="tour[name]" value="<%= @tour.name %>" id="name">
+
+  <label for="start_date">Start Date</label>
+  <input type="date"
+         name="tour[start_date]"
+         value="<%= @tour.start_date %>"
+         id="start_date">
+
+   <label for="end_date">End Date</label>
+   <input type="date"
+          name="tour[end_date]"
+          value="<%= @tour.end_date %>"
+          id="end_date">
+
+          <input type="submit" name="update_dates" value="Update Dates">
+    <br><br>
+
+    <% tour_day_total = (@tour.end_date - @tour.start_date).to_i %>
+    <fieldset id="tour_dates" class="">
+      <legend>Tour Dates</legend>
+    <input type="hidden" name="concert[location]">
+    <% tour_day_total.times do |date| %>
+    <label for="date">Date</label>
+    <input type="date"
+           name="concert[<%= date %>[date]"
+           value="<%= @tour.start_date + date %>"
+           id="date">
+
+    <label for="location">Location</label>
+    <input type="text" name="concert[<%= date %>][location]" value="" id="location">
+    <br>
+    <% end %>
+    </fieldset>
+
+
+  <p><input type="submit" value="Continue &rarr;"></p>
+</form>
+
+<%= link_to "Back to Tours", band_url(current_user.band) %>

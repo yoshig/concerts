@@ -1,0 +1,25 @@
+<h1><%= @band.name %></h1>
+<form action="<%= band_url(@band) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="text" name="band[name]" value="" id="name">
+  <input type="submit" value="Change Band Name">
+</form>
+
+<%= link_to "Add a new tour", new_tour_url %>
+<h3>Tour Dates</h3>
+  <% @band.tours.each do |tour| %>
+  <fieldset>
+    <legend><%=link_to tour.name, tour_url(tour) %></legend>
+  <%= button_to "Remove Concert", tour_url(tour), method: :delete %>
+  <ul>
+    <% tour.concerts.each do |concert| %>
+    <li>
+      <%= concert.date %>: <%= link_to concert.location, concert_url %>
+    </li>
+    <% end %>
+  </ul>
+  </fieldset>
+  <br>
+  <% end %>

@@ -8,7 +8,7 @@
 #  password_digest :string(255)      not null
 #  created_at      :datetime
 #  updated_at      :datetime
-#  band            :boolean          default(FALSE)
+#  is_a_band       :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_one :band, inverse_of: :user
   has_many :followed_bands, class_name: "Band", foreign_key: :user_id
   has_many :friends, class_name: "User", foreign_key: :user_id
+  has_many :tours, through: :band
 
   validates :username,
             :password_digest,

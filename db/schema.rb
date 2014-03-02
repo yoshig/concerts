@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227163252) do
+ActiveRecord::Schema.define(version: 20140302000800) do
 
   create_table "bands", force: true do |t|
     t.integer  "user_id"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20140227163252) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "start_date", default: '2014-03-01'
+    t.date     "end_date",   default: '2014-04-30'
   end
 
   create_table "users", force: true do |t|

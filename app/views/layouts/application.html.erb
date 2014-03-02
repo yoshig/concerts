@@ -17,21 +17,19 @@ or
 <%= link_to "Sign up", new_user_url %>
 <% end%>
 
-
-<% if @user && @user.errors.any? %>
-  <% @user.errors.full_messages.each do |msg| %>
-    <h2> <%= msg %>
+<% if flash.now[:errors] %>
+  <ul>
+  <% flash.now[:errors].each do |error| %>
+    <li><%= error %></li>
   <% end %>
-<% end %>
-
-<% if flash %>
-  <% flash.each do |k, v| %>
-    <%= v %>
-  <% end %>
+  </ul>
 <% end %>
 
 </header>
 <%= yield %>
 
+<footer>
+  <%= link_to "See Who's Touring", bands_url %>
+</footer>
 </body>
 </html>

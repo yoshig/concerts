@@ -12,5 +12,7 @@
 class Band < ActiveRecord::Base
   belongs_to :user, inverse_of: :band
   has_many :tours, inverse_of: :band
-  has_many :concerts, through: :bands
+  has_many :concerts, through: :tours
+
+  validates :user, :name, presence: true
 end
